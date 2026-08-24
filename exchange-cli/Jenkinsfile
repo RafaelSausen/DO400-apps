@@ -1,16 +1,17 @@
 pipeline {
     agent { label 'nodejs' }
     stages {
-        stage('Unit Test') {
+        stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                dir ('exchange-cli') {
+                    sh 'npm install'
+                }
             }
         }
         stage('Build') {
             steps {
                 dir ('exchange-cli') {
                     sh 'npm run build'
-
                 }
             }
         }
